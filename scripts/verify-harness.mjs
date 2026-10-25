@@ -23,14 +23,13 @@ const instructionFiles = [
 ];
 
 // Reference material the coaching flow points students to (now load-bearing — the AI directs reading here).
-const docsFiles = ['docs/TASK.md', 'docs/README.md'];
+const docsFiles = ['docs/TASK.md', 'docs/hooks.md', 'docs/README.md'];
 
 // Must-keep source files that carry the condensed AI-COACH-RULES block.
 const sentinelFiles = [
   'src/main.tsx',
   'vite.config.ts',
   'index.html',
-  'playwright.config.ts',
   'scripts/coach-reminder.mjs',
   '.cursor/hooks/check-harness.mjs',
 ];

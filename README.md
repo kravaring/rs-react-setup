@@ -1,15 +1,13 @@
-# RS React — starter template
+# RS React — Task 1 starter (Functional Components, State & Testing)
 
-The **task-less template** for RS School React course starters (AI era). Every task repo is generated from
-it: same toolchain, same AI coaching harness, with the task spec and theory dropped into `docs/`. You build
-the app described in `docs/TASK.md` **with an AI assistant coaching you**, not writing it for you.
+A pre-configured starter for **Task 1** of the RS School React course (AI era). You build a small
+**Weather Dashboard** using React function components, hooks, an Error Boundary, and unit tests —
+**with an AI assistant coaching you**, not writing it for you.
 
-- 📋 **What to build:** [`docs/TASK.md`](./docs/TASK.md) — requirements, feature/points breakdown, penalties
-  (empty in the template).
-- 📚 **What to read:** [`docs/`](./docs/) — the task spec, curated theory per topic, and an index
-  ([`docs/README.md`](./docs/README.md)) mapping each decision to its reading.
-- 🤖 **How the AI must help you:** [`AGENTS.md`](./AGENTS.md) — the coaching contract (canonical source:
-  `CLAUDE.md`).
+- 📋 **What to build:** [`docs/TASK.md`](./docs/TASK.md) — full requirements, feature/points breakdown, penalties.
+- 📚 **What to read:** [`docs/`](./docs/) — the task spec plus curated theory ([`docs/hooks.md`](./docs/hooks.md))
+  and an index ([`docs/README.md`](./docs/README.md)) mapping each decision to its reading.
+- 🤖 **How the AI must help you:** [`CLAUDE.md`](./CLAUDE.md) — the coaching contract (canonical).
 - 📝 **Your decision log:** [`CHANGELOG.md`](./CHANGELOG.md) — **mandatory** (missing = -90 points).
 
 ## Quick start
@@ -20,27 +18,22 @@ This project uses **pnpm** (recommended). Install it once with `corepack enable`
 ```sh
 pnpm install     # install dependencies + set up Husky hooks
 pnpm dev         # start Vite dev server
-pnpm test        # run Vitest (unit/component) once
-pnpm coverage    # run unit tests with coverage (statements >= 80% required)
-pnpm e2e         # run Playwright end-to-end tests (builds + serves the app)
+pnpm test        # run Vitest once
+pnpm coverage    # run tests with coverage (statements >= 80% required)
 pnpm lint        # Oxlint
 pnpm format      # Oxfmt (check); pnpm format:fix to write
 pnpm build       # type-check + production build
 ```
-
-> First E2E run: `pnpm exec playwright install chromium` downloads the browser once.
 
 ## What's already set up
 
 - **Vite + React 19 + TypeScript** (`strict`, no `any`, no `ts-ignore`).
 - **Oxlint** (`.oxlintrc.json` — recommended + React/TypeScript/jsx-a11y) as the linter.
 - **Oxfmt** (`.oxfmtrc.json`) as the formatter — one unified oxc toolchain with Oxlint.
-- **Vitest + React Testing Library + jsdom + jest-dom** for unit/component tests (a smoke test is in
-  `src/App.test.tsx` — replace it with real tests).
-- **Playwright** for end-to-end tests (config in `playwright.config.ts`, specs in `e2e/`; a smoke spec is
-  included). Vitest owns `src/**`, Playwright owns `e2e/**` — separate globs.
+- **Vitest + React Testing Library + jsdom + jest-dom** with a coverage gate (a smoke test is included
+  in `src/App.test.tsx` — replace it with real behavior tests).
 - **Husky** hooks: pre-commit runs `verify:harness` + `lint` + `format`, pre-push runs
-  `verify:harness` + `test`. (E2E runs in CI, not in local hooks — browser downloads are heavy.)
+  `verify:harness` + `test`.
 - **Per-assistant enforcement hooks** (on top of the instruction files below):
   - **Claude Code** (`.claude/settings.json`): starts in **plan mode**, uses the course's **Coach** output
     style (`.claude/output-styles/coach.md`, part of the system prompt), and a `UserPromptSubmit` hook
@@ -75,8 +68,8 @@ a tamper tripwire) ship for Claude/Codex/Cursor, but the rules **don't depend on
 
 The assistant will: **not** write the whole app; ask you to **plan first**; at each decision point lay out
 the **options + the criteria to weigh them + what to read** in `docs/`, then let **you choose and justify**
-(it will decline "just build it" **and** "which is better? / you decide" — it won't hand you the pick);
-and record every decision in `CHANGELOG.md`. You own the code and must be able to explain every line.
+(it will decline "just build it" **and** "which is better? / you decide" — it won't hand you the pick); and
+record every decision in `CHANGELOG.md`. You own the code and must be able to explain every line.
 
 > This repo ships a **coaching-harness integrity check** (`pnpm verify:harness`, run by the Husky hooks
 > and CI): it confirms the instruction files and the in-code `AI-COACH-RULES` notes are present. Removing
@@ -125,18 +118,3 @@ headless, and configured with `--codegen none`.
 > It will **not write your E2E tests** — those are graded work. Playwright's test agents
 > (`npx playwright init-agents`: planner / generator / healer) are not allowed here, and the harness check
 > fails if their files appear.
-
-## Generating a task repo from this template (course authors)
-
-1. Copy the folder (without `node_modules`) to `react/repos/<slug>/`.
-2. `package.json`: set `name` and `aiCoaching.task` (e.g. `"Task 3"`) — the mirror headers read this label.
-3. `docs/TASK.md`: paste the task spec. Add one theory file per topic (copied from `react/modules/<topic>/`)
-   and fill the decision → reading table in `docs/README.md`.
-4. `CLAUDE.md`: set the H1, §1 context (the app being built), and §4 task-specific decision points
-   (options + criteria + reading — never a recommended pick). Then run `pnpm instructions:sync`.
-5. `scripts/verify-harness.mjs`: add the theory file(s) to `docsFiles`.
-6. `.claude/settings.json` → `skillOverrides`: switch on the task's topic skills.
-7. **Tasks without E2E (1, 7):** remove `@playwright/test`, `playwright.config.ts`, `e2e/`, the `e2e*` scripts,
-   the CI browser/E2E steps, and `playwright.config.ts` from `sentinelFiles`.
-8. Rename the placeholder heading (`index.html` title, `src/App.tsx`, both smoke tests), set the
-   `CHANGELOG.md` title, then run `pnpm install && pnpm verify:harness && pnpm lint && pnpm format && pnpm test`.

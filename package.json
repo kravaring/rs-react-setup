@@ -1,5 +1,5 @@
 {
-  "name": "rs-react-main",
+  "name": "rs-react-functional-components",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -14,20 +14,16 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "coverage": "vitest run --coverage",
-    "e2e": "playwright test",
-    "e2e:ui": "playwright test --ui",
     "verify:harness": "node scripts/verify-harness.mjs",
     "instructions:sync": "node scripts/sync-instructions.mjs",
     "prepare": "husky",
     "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
-    "pnpm": "^12.15.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.63.0",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",
     "@testing-library/user-event": "^14.6.7",
@@ -48,7 +44,7 @@
   },
   "packageManager": "pnpm@12.4.1",
   "aiCoaching": {
-    "task": "Template",
+    "task": "Task 1",
     "note": "This repo uses an AI coaching harness. See CLAUDE.md. Do not disarm it; integrity is checked by scripts/verify-harness.mjs.",
     "instructionFiles": [
       "CLAUDE.md",

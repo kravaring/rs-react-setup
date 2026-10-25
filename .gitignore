@@ -27,5 +27,6 @@ coverage
 npm-debug.log*
 pnpm-debug.log*
 
+playwright-report
 # Playwright MCP output (screenshots, traces)
 /.playwright-mcp
