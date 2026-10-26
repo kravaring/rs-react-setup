@@ -1,15 +1,14 @@
-# RS React — starter template
+# RS React — Task 2 starter (Routing, SPA)
 
-The **task-less template** for RS School React course starters (AI era). Every task repo is generated from
-it: same toolchain, same AI coaching harness, with the task spec and theory dropped into `docs/`. You build
-the app described in `docs/TASK.md` **with an AI assistant coaching you**, not writing it for you.
+A pre-configured starter for **Task 2** of the RS School React course (AI era). You build a small
+**Character Catalog** single-page app with client-side **routing** (paginated list, master-detail, search,
+About, 404), unit tests, and **end-to-end tests** (Playwright, introduced in this task) —
+**with an AI assistant coaching you**, not writing it for you.
 
-- 📋 **What to build:** [`docs/TASK.md`](./docs/TASK.md) — requirements, feature/points breakdown, penalties
-  (empty in the template).
-- 📚 **What to read:** [`docs/`](./docs/) — the task spec, curated theory per topic, and an index
-  ([`docs/README.md`](./docs/README.md)) mapping each decision to its reading.
-- 🤖 **How the AI must help you:** [`AGENTS.md`](./AGENTS.md) — the coaching contract (canonical source:
-  `CLAUDE.md`).
+- 📋 **What to build:** [`docs/TASK.md`](./docs/TASK.md) — full requirements, feature/points breakdown, penalties.
+- 📚 **What to read:** [`docs/`](./docs/) — the task spec plus curated theory ([`docs/router.md`](./docs/router.md))
+  and an index ([`docs/README.md`](./docs/README.md)) mapping each decision to its reading.
+- 🤖 **How the AI must help you:** [`CLAUDE.md`](./CLAUDE.md) — the coaching contract (canonical).
 - 📝 **Your decision log:** [`CHANGELOG.md`](./CHANGELOG.md) — **mandatory** (missing = -90 points).
 
 ## Quick start
@@ -125,18 +124,3 @@ headless, and configured with `--codegen none`.
 > It will **not write your E2E tests** — those are graded work. Playwright's test agents
 > (`npx playwright init-agents`: planner / generator / healer) are not allowed here, and the harness check
 > fails if their files appear.
-
-## Generating a task repo from this template (course authors)
-
-1. Copy the folder (without `node_modules`) to `react/repos/<slug>/`.
-2. `package.json`: set `name` and `aiCoaching.task` (e.g. `"Task 3"`) — the mirror headers read this label.
-3. `docs/TASK.md`: paste the task spec. Add one theory file per topic (copied from `react/modules/<topic>/`)
-   and fill the decision → reading table in `docs/README.md`.
-4. `CLAUDE.md`: set the H1, §1 context (the app being built), and §4 task-specific decision points
-   (options + criteria + reading — never a recommended pick). Then run `pnpm instructions:sync`.
-5. `scripts/verify-harness.mjs`: add the theory file(s) to `docsFiles`.
-6. `.claude/settings.json` → `skillOverrides`: switch on the task's topic skills.
-7. **Tasks without E2E (1, 7):** remove `@playwright/test`, `playwright.config.ts`, `e2e/`, the `e2e*` scripts,
-   the CI browser/E2E steps, and `playwright.config.ts` from `sentinelFiles`.
-8. Rename the placeholder heading (`index.html` title, `src/App.tsx`, both smoke tests), set the
-   `CHANGELOG.md` title, then run `pnpm install && pnpm verify:harness && pnpm lint && pnpm format && pnpm test`.

@@ -1,1 +1,1 @@
-# Decision log
+# Decision log — Character Catalog (Task 2)
