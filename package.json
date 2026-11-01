@@ -1,5 +1,5 @@
 {
-  "name": "rs-react-main",
+  "name": "rs-react-queries",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -48,7 +48,7 @@
   },
   "packageManager": "pnpm@12.4.1",
   "aiCoaching": {
-    "task": "Template",
+    "task": "Task 4",
     "note": "This repo uses an AI coaching harness. See CLAUDE.md. Do not disarm it; integrity is checked by scripts/verify-harness.mjs.",
     "instructionFiles": [
       "CLAUDE.md",
